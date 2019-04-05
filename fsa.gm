@@ -1,0 +1,21 @@
+node class State {
+    isInitial:boolean = false;
+    isFinal:boolean = false;
+    name:string = "";
+}
+
+node class Input {
+    value:string = "";
+}
+
+edge class Event 
+    connect State[+] --> State[+]
+{
+    name:string = "";
+}
+
+edge class Next
+    connect Input[1] --> Input[1];
+
+node class Current;
+edge class generic;

@@ -1,0 +1,58 @@
+#using "fsa.gm"
+
+
+# Create the graph
+new graph "fsa.grg"
+
+new :State($=S1,name="S1",isInitial=true)
+new :State($=S2,name="S2")
+new :State($=S3,name="S3",isFinal=true)
+
+new @(S1) -:Event($=E1,name="a")-> @(S2)
+new @(S2) -:Event($=E2,name="a")-> @(S3)
+
+new :Input($=I1,value="a")
+new :Input($=I2,value="a")
+new :Input($=I3,value="b")
+new :Input($=I4,value="b")
+
+new @(I1) -:Next-> @(I2)
+new @(I2) -:Next-> @(I3)
+new @(I3) -:Next-> @(I4)
+
+
+# Modify some visualization
+
+# State
+dump set node State shape circle
+dump set node State color lightblue
+dump set node State labels off
+dump add node State infotag name
+dump add node State infotag isInitial
+dump add node State infotag isFinal
+
+# Event
+dump add edge Event shortinfotag name
+dump set edge Event labels off
+
+# Current
+dump set node Current shape circle
+dump set node Current labels "C"
+dump set node Current color yellow
+
+# generic
+dump set edge generic labels off
+
+# Input
+dump set node Input labels off
+dump add node Input shortinfotag value
+
+# Next
+dump set edge Next labels off
+
+
+
+# Start debugging and execute rules
+debug enable
+debug layout
+
