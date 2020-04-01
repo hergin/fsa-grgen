@@ -1,2 +1,32 @@
 #using "fsa.gm"
 
+rule SetInitialAsCurrent {
+    S:State;
+
+    if {
+        S.isInitial==true;
+    }
+
+    modify {
+        C:Current -:generic-> S;
+    }
+}
+
+rule SimulateStep {
+    C:Current -g:generic-> S:State -E:Event-> S2:State;
+    I:Input;
+
+    if {
+        E.name == I.value;
+    }
+
+    negative {
+        I2:Input --> I;
+    }
+
+    modify {
+        delete(I);
+        delete(g);
+        C -:generic-> S2;
+    }
+}

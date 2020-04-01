@@ -1,6 +1,5 @@
 #using "fsa.gm"
 
-
 # Create the graph
 new graph "fsa.grg"
 
@@ -56,3 +55,5 @@ dump set edge Next labels off
 debug enable
 debug layout
 
+debug exec SetInitialAsCurrent
+debug exec SimulateStep*
